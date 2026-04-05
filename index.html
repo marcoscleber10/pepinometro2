@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seu candidato tem pepino? • Pepinômetro</title>
   <style>
-    /* ===== ESTILOS GLOBAIS DO PEPINÔMETRO ===== */
+    /* ===== ESTILOS GLOBAIS DO PEPINÔMETRO (mantidos) ===== */
     :root {
       --bg: #0a0a0a;
       --card: #111;
@@ -35,7 +35,7 @@
     header h1 { font-size: 1.8rem; margin-bottom: 8px; }
     header p { color: var(--muted); font-size: 0.95rem; }
     
-    /* Navegação */
+    /* Filtros e navegação */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -83,7 +83,7 @@
       border-color: var(--orange);
     }
     
-    /* Cards */
+    /* Cards de políticos */
     #listaPoliticos {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -112,7 +112,7 @@
     .score.baixo { background: var(--green); color: #000; }
     .score.limpo { background: #444; color: #fff; }
     
-    /* Footer */
+    /* Rodapé e estatísticas */
     footer {
       margin-top: 40px;
       padding-top: 20px;
@@ -135,6 +135,7 @@
       border-radius: 8px;
     }
     
+    /* Loading e mensagens */
     .loading, .empty {
       text-align: center;
       padding: 40px;
@@ -142,9 +143,10 @@
       grid-column: 1 / -1;
     }
     
-    /* ===== ESTILOS DA ABA BITCOIN ===== */
+    /* ===== ESTILOS DA NOVA ABA BITCOIN ===== */
     #aba-bitcoin { display: none; }
     
+    /* Ranking Geral */
     #rankingGeral {
       background: var(--card);
       padding: 16px;
@@ -160,6 +162,7 @@
     }
     #rankingGeral p:last-child { border-bottom: none; }
     
+    /* Mapa simplificado */
     #mapaBrasil {
       background: var(--card);
       padding: 16px;
@@ -170,6 +173,7 @@
     #mapaBrasil h3 { margin-bottom: 12px; color: var(--green); }
     #mapaBrasil p { font-size: 0.95rem; }
     
+    /* Busca da aba Bitcoin */
     #buscaBitcoin {
       width: 100%;
       max-width: 400px;
@@ -187,6 +191,7 @@
       border-color: var(--orange);
     }
     
+    /* Cards Bitcoin */
     #listaBitcoin {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -197,6 +202,7 @@
       position: relative;
     }
     
+    /* Selos */
     .selo {
       display: inline-block;
       padding: 5px 12px;
@@ -218,6 +224,7 @@
       border: 2px solid #c00;
     }
     
+    /* Botão de link oficial */
     .btn-link {
       display: inline-flex;
       align-items: center;
@@ -237,6 +244,7 @@
       transform: translateY(-1px);
     }
     
+    /* Detalhes extras do projeto */
     .projeto-detalhes {
       font-size: 0.85rem;
       color: var(--muted);
@@ -246,6 +254,7 @@
     }
     .projeto-detalhes strong { color: var(--text); }
     
+    /* Contador de projetos por político */
     .contador-projetos {
       font-size: 0.8rem;
       color: var(--orange);
@@ -253,13 +262,19 @@
       margin: 4px 0;
     }
     
+    /* Responsividade */
     @media (max-width: 600px) {
       nav { flex-direction: column; align-items: stretch; }
       nav button, nav select { width: 100%; }
-      #listaPoliticos, #listaBitcoin { grid-template-columns: 1fr; }
+      #listaPoliticos, #listaBitcoin {
+        grid-template-columns: 1fr;
+      }
     }
     
-    section { animation: fadeIn 0.3s ease; }
+    /* Animação suave para abas */
+    section {
+      animation: fadeIn 0.3s ease;
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -268,13 +283,13 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
+  <!-- ===== CABEÇALHO ORIGINAL (mantido) ===== -->
   <header>
     <h1>🥒 Seu candidato tem pepino?</h1>
     <p>Deputados, senadores e ministros • Fontes: TSE • CNJ • STF • Portal Transparência</p>
   </header>
 
-  <!-- NAVEGAÇÃO COM ABA BITCOIN -->
+  <!-- ===== NAVEGAÇÃO COM NOVA ABA BITCOIN ===== -->
   <nav>
     <button onclick="mostrarAba('todos')" class="active">Todos</button>
     <button onclick="mostrarAba('ministros')">Ministros</button>
@@ -282,10 +297,11 @@
     <button onclick="mostrarAba('deputados')">Deputados</button>
     <button onclick="mostrarAba('senadores')">Senadores</button>
     <button onclick="mostrarAba('lavajato')">Lava Jato</button>
+    <!-- ✅ NOVA ABA BITCOIN -->
     <button onclick="mostrarAba('bitcoin')">🟠 Projetos Bitcoin</button>
   </nav>
 
-  <!-- FILTROS -->
+  <!-- ===== FILTROS ORIGINAIS (mantidos) ===== -->
   <div class="search-bar">
     <input type="text" id="buscaGeral" placeholder="🔍 Buscar político, partido ou estado..." onkeyup="filtrarGeral()">
     <select id="filtroEstado" onchange="filtrarGeral()">
@@ -309,7 +325,7 @@
     </select>
   </div>
 
-  <!-- ESTATÍSTICAS -->
+  <!-- ===== ESTATÍSTICAS ORIGINAIS (mantidas) ===== -->
   <div class="stats">
     <span><strong>874</strong> políticos</span>
     <span><strong>25</strong> 🔴 Alto risco</span>
@@ -317,14 +333,14 @@
     <span><strong>10</strong> 🟢 Sem pepinos</span>
   </div>
 
-  <!-- SEÇÃO PRINCIPAL -->
+  <!-- ===== SEÇÃO PRINCIPAL - POLÍTICOS (mantida) ===== -->
   <section id="aba-todos">
     <div id="listaPoliticos">
       <div class="loading">Carregando políticos...</div>
     </div>
   </section>
 
-  <!-- Seções placeholder -->
+  <!-- Seções placeholder para outras abas (mantidas) -->
   <section id="aba-ministros" style="display:none;"><div class="loading">Carregando ministros...</div></section>
   <section id="aba-governadores" style="display:none;"><div class="loading">Carregando governadores...</div></section>
   <section id="aba-deputados" style="display:none;"><div class="loading">Carregando deputados...</div></section>
@@ -335,15 +351,20 @@
   <section id="aba-bitcoin" style="display:none;">
     <h2 style="text-align:center; margin-bottom:20px; color:var(--orange);">🟠 Políticos com Projetos sobre Bitcoin</h2>
     
+    <!-- Ranking Geral -->
     <div id="rankingGeral"></div>
+    
+    <!-- Mapa Simplificado -->
     <div id="mapaBrasil"></div>
     
+    <!-- Busca específica da aba -->
     <input type="text" id="buscaBitcoin" placeholder="🔍 Buscar por nome, partido ou estado..." onkeyup="filtrarBitcoin()">
     
+    <!-- Lista de projetos -->
     <div id="listaBitcoin"></div>
   </section>
 
-  <!-- RODAPÉ -->
+  <!-- ===== RODAPÉ ORIGINAL (mantido) ===== -->
   <footer>
     <p>⚠️ Dados baseados em fontes públicas oficiais. Presunção de inocência preservada.</p>
     <p style="margin-top:8px;">"Não analisado" = aguardando curadoria • Atualizado em <strong>abril/2026</strong></p>
@@ -353,15 +374,25 @@
     </p>
   </footer>
 
-  <!-- JAVASCRIPT -->
+  <!-- ===== JAVASCRIPT PRINCIPAL ===== -->
   <script>
+    // ===== DADOS GLOBAIS =====
     let todosPoliticos = [];
     let projetosBitcoin = [];
 
+    // ===== FUNÇÕES DE NAVEGAÇÃO ENTRE ABAS =====
     function mostrarAba(aba) {
-      document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
-      document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
+      // Esconde todas as seções
+      document.querySelectorAll("section").forEach(sec => {
+        sec.style.display = "none";
+      });
       
+      // Remove classe active de todos os botões
+      document.querySelectorAll("nav button").forEach(btn => {
+        btn.classList.remove("active");
+      });
+      
+      // Mostra a aba selecionada
       if (aba === "todos") {
         document.getElementById("aba-todos").style.display = "block";
         event.target.classList.add("active");
@@ -371,22 +402,26 @@
         event.target.classList.add("active");
         carregarBitcoin();
       } else {
+        // Outras abas (placeholders)
         document.getElementById("aba-" + aba).style.display = "block";
         event.target.classList.add("active");
       }
     }
 
+    // ===== CARREGAR POLÍTICOS (API REAL) =====
     async function carregarPoliticos() {
       try {
         const response = await fetch('/api/politicos');
         todosPoliticos = await response.json();
         renderPoliticos(todosPoliticos);
       } catch (erro) {
+        // Fallback com dados estáticos se API falhar
         todosPoliticos = gerarDadosMock();
         renderPoliticos(todosPoliticos);
       }
     }
 
+    // ===== RENDERIZAR POLÍTICOS (mantido original) =====
     function renderPoliticos(lista) {
       const container = document.getElementById("listaPoliticos");
       
@@ -413,6 +448,7 @@
       }).join("");
     }
 
+    // ===== FILTRO GERAL (mantido original) =====
     function filtrarGeral() {
       const termo = document.getElementById("buscaGeral").value.toLowerCase();
       const estado = document.getElementById("filtroEstado").value;
@@ -438,21 +474,17 @@
       renderPoliticos(filtrado);
     }
 
-    // ✅ CARREGAR PROJETOS BITCOIN - JSON ESTÁTICO
+    // ===== CARREGAR PROJETOS BITCOIN (API REAL) =====
     async function carregarBitcoin() {
       const container = document.getElementById("listaBitcoin");
       container.innerHTML = '<div class="loading">Carregando projetos sobre Bitcoin...</div>';
       
       try {
-        // 🔥 FETCH PARA ARQUIVO JSON ESTÁTICO
-        const response = await fetch('dados/projetos.json');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
+        // 🔥 API REAL - ajuste o endpoint conforme seu backend
+        const response = await fetch('/api/projetos');
         const dados = await response.json();
 
+        // Palavras-chave para filtrar projetos relacionados a Bitcoin
         const palavrasChave = ["bitcoin", "btc", "criptomoeda", "moeda digital", "blockchain", "criptoativo"];
 
         projetosBitcoin = dados.filter(p => {
@@ -466,6 +498,7 @@
           return palavrasChave.some(palavra => texto.includes(palavra));
         });
 
+        // Renderiza ranking, mapa e lista
         mostrarRankingGeral(projetosBitcoin);
         gerarMapa(projetosBitcoin);
         renderBitcoin(projetosBitcoin);
@@ -475,13 +508,13 @@
         container.innerHTML = `
           <div class="empty">
             ⚠️ Não foi possível carregar os projetos.<br><br>
-            <small>Verifique se o arquivo <strong>dados/projetos.json</strong> existe.<br>
-            Se estiver abrindo o HTML direto do computador, use um servidor local (ex: Live Server no VS Code).</small>
+            <small>Verifique sua conexão ou contate o administrador.</small>
           </div>
         `;
       }
     }
 
+    // ===== RENDERIZAR PROJETOS BITCOIN =====
     function renderBitcoin(lista) {
       const container = document.getElementById("listaBitcoin");
       
@@ -490,6 +523,7 @@
         return;
       }
 
+      // Contagem de projetos por político (para ranking individual)
       const contagemPorPolitico = {};
       lista.forEach(p => {
         const key = `${p.nome}|${p.partido}`;
@@ -497,11 +531,13 @@
       });
 
       container.innerHTML = lista.map(p => {
+        // Selo de posicionamento (híbrido: pode vir da API ou ser calculado)
         const posicionamento = p.posicionamento || calcularPosicionamento(p);
         const selo = posicionamento === "pro" 
           ? `<span class="selo pro">🟢 Pró-Bitcoin</span>`
           : `<span class="selo contra">🔴 Contra/Cético</span>`;
 
+        // Formatação de data
         const dataFormatada = p.data ? new Date(p.data).toLocaleDateString('pt-BR') : 'N/A';
 
         return `
@@ -527,12 +563,17 @@
       }).join("");
     }
 
+    // ===== FUNÇÃO HÍBRIDA: CALCULAR POSICIONAMENTO =====
     function calcularPosicionamento(projeto) {
+      // Se já vier definido na API, usa esse valor
       if (projeto.posicionamento) return projeto.posicionamento;
       
+      // Lógica automática baseada em palavras-chave (fallback)
       const texto = (projeto.titulo + " " + projeto.descricao + " " + projeto.ementa).toLowerCase();
       
+      // Palavras que indicam apoio
       const proWords = ["adoção", "regulamentação favorável", "incentivo", "meio de pagamento", "inovação", "liberdade financeira"];
+      // Palavras que indicam oposição
       const contraWords = ["proibir", "banir", "restringir", "crime", "ilegal", "risco sistêmico", "especulação"];
       
       const proCount = proWords.filter(w => texto.includes(w)).length;
@@ -541,9 +582,11 @@
       if (proCount > contraCount) return "pro";
       if (contraCount > proCount) return "contra";
       
+      // Default: neutro/indeterminado → trata como "pro" para visibilidade
       return "pro";
     }
 
+    // ===== FILTRAR PROJETOS BITCOIN =====
     function filtrarBitcoin() {
       const termo = document.getElementById("buscaBitcoin").value.toLowerCase();
 
@@ -557,6 +600,7 @@
       renderBitcoin(filtrado);
     }
 
+    // ===== RANKING GERAL DE POLÍTICOS PRÓ-BITCOIN =====
     function mostrarRankingGeral(lista) {
       const container = document.getElementById("rankingGeral");
       
@@ -565,6 +609,7 @@
         return;
       }
 
+      // Contagem por político (apenas os "pro")
       const ranking = {};
       lista
         .filter(p => (p.posicionamento || calcularPosicionamento(p)) === "pro")
@@ -575,7 +620,7 @@
 
       const ordenado = Object.entries(ranking)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 10);
+        .slice(0, 10); // Top 10
 
       if (ordenado.length === 0) {
         container.innerHTML = '<p style="color:var(--muted)">Nenhum político "Pró-Bitcoin" identificado ainda.</p>';
@@ -590,6 +635,7 @@
       `;
     }
 
+    // ===== MAPA SIMPLIFICADO POR ESTADO =====
     function gerarMapa(lista) {
       const container = document.getElementById("mapaBrasil");
       
@@ -598,6 +644,7 @@
         return;
       }
 
+      // Estados com políticos pró-bitcoin
       const estadosPro = [...new Set(
         lista
           .filter(p => (p.posicionamento || calcularPosicionamento(p)) === "pro")
@@ -619,6 +666,7 @@
       `;
     }
 
+    // ===== DADOS MOCK PARA FALLBACK (se API não responder) =====
     function gerarDadosMock() {
       return [
         {
@@ -642,8 +690,12 @@
       ];
     }
 
+    // ===== INICIALIZAÇÃO =====
     document.addEventListener("DOMContentLoaded", () => {
+      // Carrega políticos ao iniciar
       carregarPoliticos();
+      
+      // Ativa aba "Todos" por padrão
       document.querySelector('nav button[onclick="mostrarAba(\'todos\')"]').classList.add("active");
     });
   </script>
